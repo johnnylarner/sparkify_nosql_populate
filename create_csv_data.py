@@ -4,18 +4,13 @@ import csv
 
 
 def get_files():
-    # checking your current working directory
-    print(os.getcwd())
-
-    # Get your current folder and subfolder event data
+    """
+    Traverses event_data folder and returns file paths as list.
+    """
     filepath = os.getcwd() + '/event_data'
 
-    # Create a for loop to create a list of files and collect each filepath
     for root, dirs, files in os.walk(filepath):
-        
-    # join the file path and roots with the subdirectories using glob
         file_path_list = glob.glob(os.path.join(root,'*'))
-        #print(file_path_list)
 
     return file_path_list
 
@@ -59,7 +54,7 @@ def create_event_csv(file_path_list):
 
     # check the number of rows in your csv file
     with open('event_datafile_new.csv', 'r', encoding = 'utf8') as f:
-        print(sum(1 for line in f))
+        print("Number of records in CSV: ", sum(1 for line in f))
 
 if __name__ == "__main__":
     files = get_files()

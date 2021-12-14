@@ -5,7 +5,7 @@ from cql_queries import create_keyspace_query, create_table_queries, drop_table_
 
 def create_keyspace():
     """
-    Create keyspace if not exitsts.
+    Create keyspace if not exists.
     """
     
     try:
@@ -35,6 +35,7 @@ def create_tables(session):
             session.execute(q)
         
         except Exception as e:
+            print(q)
             print(e)
 
     for q in create_table_queries:
@@ -43,6 +44,7 @@ def create_tables(session):
             session.execute(q)
 
         except Exception as e:
+            print(q)
             print(e)
 
     print("Tables created!")
@@ -50,7 +52,7 @@ def create_tables(session):
 
 if __name__ == "__main__":
     
-    session, clus = create_keyspace
+    session, clus = create_keyspace()
     create_tables(session)
     session.shutdown()
     clus.shutdown()
