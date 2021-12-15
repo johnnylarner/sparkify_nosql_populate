@@ -2,7 +2,7 @@ from cassandra.cluster import Cluster
 from cassandra.query import dict_factory
 import pandas as pd
 import os
-from cql_queries import select_queries, insert_table1, insert_table2, insert_table3
+from cql_queries import select_queries, insert_songs_per_session, insert_songs_per_user_session, insert_songs_per_user
 
 
 def import_event_data():
@@ -43,18 +43,18 @@ def insert_event_data(df, session):
             row.sessionId, row.itemInSession,
             row.artist, row.song, row.length
         )
-        session.execute(insert_table1, vals)
+        session.execute(insert_songs_per_session, vals)
 
         vals = (
             row.userId, row.sessionId, row.itemInSession,
             row.artist, row.song, row.firstName, row.lastName
         )
-        session.execute(insert_table2, vals)
+        session.execute(insert_songs_per_user_session, vals)
 
         vals = (
             row.song, row.firstName, row.lastName
         )
-        session.execute(insert_table3, vals)
+        session.execute(insert_songs_per_user, vals)
 
         print(f"{row_num}/{num_rows} rows processed!")
         row_num += 1

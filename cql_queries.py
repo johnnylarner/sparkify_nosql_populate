@@ -7,8 +7,8 @@ create_keyspace_query = ("""
 """)
 # CREATE TABLES
 
-create_table1 = ("""
-        CREATE TABLE IF NOT EXISTS table1
+create_songs_per_session = ("""
+        CREATE TABLE IF NOT EXISTS songs_per_session
         (
             session_id int,
             item_in_session int,
@@ -19,9 +19,9 @@ create_table1 = ("""
         );
 """)
 
-create_table2 = ("""
+create_songs_per_user_session = ("""
 
-        CREATE TABLE IF NOT EXISTS table2
+        CREATE TABLE IF NOT EXISTS songs_per_user_session
         (
             user_id int,
             session_id int,
@@ -35,9 +35,9 @@ create_table2 = ("""
 
 """)
 
-create_table3 = ("""
+create_songs_per_user = ("""
 
-        CREATE TABLE IF NOT EXISTS table3
+        CREATE TABLE IF NOT EXISTS songs_per_user
         (
             song_title text,
             user_first_name text,
@@ -49,8 +49,8 @@ create_table3 = ("""
 
 # INSERT STATEMENTS
 
-insert_table1 = ("""
-INSERT INTO table1 (
+insert_songs_per_session = ("""
+INSERT INTO songs_per_session (
     session_id,
     item_in_session,
     artist,
@@ -61,8 +61,8 @@ VALUES (%s, %s, %s, %s, %s);
 
 """)
 
-insert_table2 = ("""
-INSERT INTO table2 (
+insert_songs_per_user_session = ("""
+INSERT INTO songs_per_user_session (
     user_id,
     session_id,
     item_in_session,
@@ -75,8 +75,8 @@ VALUES (%s, %s, %s, %s, %s, %s, %s);
 
 """)
 
-insert_table3 = ("""
-INSERT INTO table3 (
+insert_songs_per_user= ("""
+INSERT INTO songs_per_user (
     song_title,
     user_first_name,
     user_last_name
@@ -86,31 +86,31 @@ VALUES (%s, %s, %s);
 """)
 
 # SELECT STATEMENTS FOR DATA VALIDATION
-select_table1 = ("""
-SELECT artist, song_title, song_length FROM table1 WHERE session_id = 338 AND item_in_session = 4;
+select_songs_per_session = ("""
+SELECT artist, song_title, song_length FROM songs_per_session WHERE session_id = 338 AND item_in_session = 4;
 """)
 
-select_table2 = ("""
-SELECT artist, song_title, user_first_name, user_last_name FROM table2 WHERE user_id = 10 AND session_id = 182;
+select_songs_per_user_session = ("""
+SELECT artist, song_title, user_first_name, user_last_name FROM songs_per_user_session WHERE user_id = 10 AND session_id = 182;
 """)
 
-select_table3 = ("""
-SELECT * FROM table3 WHERE song_title = 'All Hands Against His Own';
+select_songs_per_user = ("""
+SELECT * FROM songs_per_user WHERE song_title = 'All Hands Against His Own';
 """)
 
 # DROP TABLES
-drop_table1 = ("""
-    DROP TABLE IF EXISTS table1;
+drop_songs_per_session = ("""
+    DROP TABLE IF EXISTS songs_per_session;
 """)
 
-drop_table2 = ("""
-    DROP TABLE IF EXISTS table2;
+drop_songs_per_user_session = ("""
+    DROP TABLE IF EXISTS songs_per_user_session;
 """)
 
-drop_table3 = ("""
-    DROP TABLE IF EXISTS table3;
+drop_songs_per_user = ("""
+    DROP TABLE IF EXISTS songs_per_user;
 """)
 
-create_table_queries = [create_table1, create_table2, create_table3]
-select_queries = [select_table1, select_table2, select_table3]
-drop_table_queries = [drop_table1, drop_table2, drop_table3]
+create_table_queries = [create_songs_per_session, create_songs_per_user_session, create_songs_per_user]
+select_queries = [select_songs_per_session, select_songs_per_user_session, select_songs_per_user]
+drop_table_queries = [drop_songs_per_session, drop_songs_per_user_session, drop_songs_per_user]
