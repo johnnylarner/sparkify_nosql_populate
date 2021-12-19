@@ -30,7 +30,7 @@ create_songs_per_user_session = ("""
             song_title text,
             user_first_name text,
             user_last_name text,
-            PRIMARY KEY (user_id, session_id, item_in_session)
+            PRIMARY KEY ((user_id, session_id), item_in_session)
         );
 
 """)
@@ -40,9 +40,10 @@ create_songs_per_user = ("""
         CREATE TABLE IF NOT EXISTS songs_per_user
         (
             song_title text,
+            user_id int,
             user_first_name text,
             user_last_name text,
-            PRIMARY KEY (song_title, user_first_name, user_last_name)
+            PRIMARY KEY (song_title, user_id)
         );
 
 """)
