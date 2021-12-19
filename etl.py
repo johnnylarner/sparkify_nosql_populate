@@ -52,7 +52,7 @@ def insert_event_data(df, session):
         session.execute(insert_songs_per_user_session, vals)
 
         vals = (
-            row.song, row.firstName, row.lastName
+            row.song, row.userId, row.firstName, row.lastName
         )
         session.execute(insert_songs_per_user, vals)
 

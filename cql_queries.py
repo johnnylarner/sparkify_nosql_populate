@@ -79,10 +79,11 @@ VALUES (%s, %s, %s, %s, %s, %s, %s);
 insert_songs_per_user= ("""
 INSERT INTO songs_per_user (
     song_title,
+    user_id,
     user_first_name,
     user_last_name
 )
-VALUES (%s, %s, %s);
+VALUES (%s, %s, %s, %s);
 
 """)
 
